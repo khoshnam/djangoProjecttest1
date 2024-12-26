@@ -1,0 +1,156 @@
+{% load jalali_tags %}
+{% load static %}
+{% load jformat %}
+{% load jalali_tags %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+hi
+<form  method="post"  action="{% url 'index' %}">
+    {% csrf_token %}
+    {{ form }}
+
+<button type="submit" class="btn btn-default">بازیابی کلمه عبور</button>
+
+    {% for contract_data in contract_totals %}
+
+    <p>Contract: {{ contract_data.contract.contract_number }} - Total Collected: {{ contract_data.total_collected }}
+    Total Collected: {{ contract_data.contract.province }}
+    </p>
+{% endfor %}
+
+</form>
+<link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+		<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+
+
+
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#table border="1">#}
+{#    <thead>#}
+{#        <tr>#}
+{#            <th>استان</th>#}
+{#            <th>شماره قرارداد</th>#}
+{#            <th>تاریخ وصول</th>#}
+{#            <th>مجموع مبلغ‌های وصول‌شده</th>#}
+{#            <th>حق بیمه</th>#}
+{#        </tr>#}
+{#    </thead>#}
+{#    <tbody>#}
+{#        {% for item3 in contracts1 %}#}
+{#            <tr>#}
+{#                <td>{{ item3.province }}</td>#}
+{#                <td>{{ item3.contract_number }}</td>#}
+{#                <td>#}
+{#                    <ul>#}
+{#                        {% for collection in item.premium_collections.all %}#}
+{#                            <li>{{ collection.collection_date2 }}</li>#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                </td>#}
+{#                <td>{{ item3.total_collected }}</td>#}
+{#                <td>{{ item3.premium }}</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#    </tbody>#}
+{#</table>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#<h2>مبالغ وصول‌شده به تفکیک ماه برای هر قرارداد</h2>#}
+{#    <table border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>شماره قرارداد</th>#}
+{#                <th>استان</th>#}
+{#                <th>مبالغ وصول‌شده به تفکیک ماه</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for item4 in contract_monthly_totals1 %}#}
+{#                <tr>#}
+{#                    <td>{{ item4.contract.contract_number }}</td>#}
+{#                    <td>{{ item4.contract.province }}</td>#}
+{#                    <td>#}
+{#                        <ul>#}
+{#                            {% for month in item4.monthly_collections %}#}
+{#                                <li>#}
+{#                                    سال: {{ month.collection_date }} -#}
+{#                                    مبلغ: {{ month.monthly_amount }}#}
+{#                                </li>#}
+{#                            {% endfor %}#}
+{#                        </ul>#}
+{#                    </td>#}
+{#                </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{##}
+{##}
+{#<table>#}
+{#    <thead>#}
+{#        <tr>#}
+{#            <th>شماره قرارداد</th>#}
+{#            <th>استان</th>#}
+{#            <th>حق بیمه</th>#}
+{#            <th>سال</th>#}
+{#            <th>ماه</th>#}
+{#            <th>مبلغ وصول‌شده</th>#}
+{#        </tr>#}
+{#    </thead>#}
+{#    <tbody>#}
+{#        {% for item22 in result22 %}#}
+{#            <tr>#}
+{#                <td>{{ item22.contract_number }}</td>#}
+{#                <td>{{ item22.province }}</td>#}
+{#                <td>{{ item22.premium }}</td>#}
+{#                <td>{{ item22.premium_collections__collection_date__year }}</td>#}
+{#                <td>{{ item22.premium_collections__collection_date__month }}</td>#}
+{#                <td>{{ item22.total_collected }}</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#    </tbody>#}
+{#</table>#}
+{##}
+
+<table>
+    <thead>
+        <tr>
+            <th>شماره قرارداد</th>
+            <th>استان</th>
+            <th>جمعیت</th>
+            <th>کل حق بیمه</th>
+            <th>حق بیمه وصول شده درماه</th>
+            <th>سال</th>
+            <th>مبلغ وصول‌شده</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item23 in result23 %}
+            <tr>
+                <td>{{ item23.contract_number }}</td>
+                <td>{{ item23.province }}</td>
+                <td>{{ item23.population }}</td>
+                <td>{{ item23.premium }}</td>
+                <td>{{ item23.premium_collections__amount_collected }}</td>
+                <td>{{ item23.premium_collections__collection_date1 }}</td>
+                <td>{{ item23.total_collected }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
